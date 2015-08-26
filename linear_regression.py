@@ -27,3 +27,4 @@ f = model.fit()
 print(f.summary())
 
 
+
