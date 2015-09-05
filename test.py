@@ -1,29 +1,18 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib.mlab as mlab
+from scipy import stats
+import collections
 import pandas as pd
+import matplotlib.pyplot as plt
 
+loansData = pd.read_csv('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv')
+loansData.dropna(inplace = True)
+c = collections.Counter(loansData['Open.CREDIT.Lines'])
 
-df = pd.read_csv('http://statweb.stanford.edu/~tibs/ElemStatLearn/datasets/SAheart.data', index_col=0)
+list1 = []
+for k,v in c.items():
+	list1.append(v)
+print(c.values())
+print(list1)
+#chi, p = stats.chisquare(c.values()) ## does not work
+#chi, p = stats.chisquare(list1) #does work
+#print(chi,p)
 
-# copy data and separate predictors and response
-X = df.copy()
-y = X.pop('chd')
-
-df.head()
-print(y.head())
-
-print(df['chd'].groupby(X.famhist).mean())
-print(df.famhist.head())
-print(pd.Categorical(df.famhist).labels)
-# plt.scatter(df.logincome, df.mdvis, alpha=0.3)
-# plt.xlabel('Log income')
-# plt.ylabel('Number of visits')
-
-# income_linspace = np.linspace(df.logincome.min(), df.logincome.max(), 100)
-
-# est = smf.ols(formula='mdvis ~ logincome + hlthp', data=df).fit()
-
-# plt.plot(income_linspace, est.params[0] + est.params[1] * income_linspace + est.params[2] * 0, 'r')
-# plt.plot(income_linspace, est.params[0] + est.params[1] * income_linspace + est.params[2] * 1, 'g')
-# short_summary(est)
