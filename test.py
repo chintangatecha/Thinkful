@@ -16,3 +16,5 @@ print(list1)
 #chi, p = stats.chisquare(list1) #does work
 #print(chi,p)
 
+
+
