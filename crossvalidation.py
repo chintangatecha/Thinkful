@@ -19,3 +19,4 @@ print(Y_test.shape)
 clf = svm.SVC(kernel='linear', C=1).fit(X_train, Y_train)
 score = clf.score(X_test, Y_test)
 print(score)
+
